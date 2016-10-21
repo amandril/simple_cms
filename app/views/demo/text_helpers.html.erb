@@ -1,0 +1,59 @@
+<%
+text = "This is some long sample text. It includes line breaks\n and double-line breaks.\n\n It rambles on and on and on.\n\n Until we get to this last line."
+%>
+
+<h2>word_wraps</h2>
+<em>Every line that's greated than or equal to 30 characters gets a \n (line break), but HTML ignores the \n unless they're inside &lt;pre&gt; tags.</em><br><br>
+<%= word_wrap(text, :line_width => 30) %>
+<hr>
+
+<h2>simple_format</h2>
+<em>Takes every \n it finds and converts it into an html &lt;br&gt; tag.</em><br>
+<em>Takes every \n\n it finds and wraps the text before it and after it in &lt;p&gt; tags.</em><br><br>
+<%= simple_format(text) %>
+<hr>
+
+<h2>simple_format + word_wrap</h2>
+<em>Combines both word_wraps and simple_format and makes the word wrap at 30 characters work.</em><br>
+<em>Will also convert any \n already in the text into &lt;br&gt; tags.</em><br><br>
+
+<%= simple_format(word_wrap(text, :line_width => 30)) %>
+<hr>
+
+<h2>truncate</h2>
+<em>Truncates text based on the length provided. On the end, it adds an omission string (:omission => "...")</em><br><br>
+
+<%= truncate(text, :length => 40, :omission => "...") %>
+<hr>
+
+<h2>excerpt</h2>
+<em>Looks for a target word. When it finds it, it will snip out a number of characters before and after (:radius => 7), and include an omission on either side (:omission => "...").</em><br><br>
+<%= excerpt(text, 'includes', :radius => 7, :omission => "...") %>
+<hr>
+
+<h2>highlight</h2>
+<em>Looks for a target text and wraps it in a style.</em><br><br>
+<%= highlight(text, 'sample text') %>
+<hr>
+<em>Can accept an array (text, ['sample', 'rambles']) for multiple bits of target text. Can specify custom highlighter string (:highlighter => '&lt;em&gt;\1&lt;/em&gt;').</em><br><br>
+<%= highlight(text, ['sample', 'rambles'], :highlighter => '<em>\1</em>') %>
+
+<h2>pluralize</h2>
+<em>Can use pluralize to automatically convert a string to plural.</em><br><br>
+<%= "student".pluralize %><br>
+<%= "ox".pluralize %><br>
+<br>
+<em>Can also use a numerical value to determine whether pluralize converts the string into plural.</em><br><br>
+<%= pluralize(2, 'product') %><br>
+<br>
+<% [0, 1, 20].each do |n| %>
+	<%= pluralize(n, 'product') %><br>
+	<%= pluralize(n, 'octopus') %><br>
+	<%= pluralize(n, 'snipe', 'snope') %><br>
+<% end %>
+<hr>
+
+<h2>cycle</h2>
+<% 5.times do %>
+	<%= cycle('red', 'green', 'blue') %><br>
+<% end %>

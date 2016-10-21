@@ -1,0 +1,52 @@
+<h1>Number helpers</h1>
+
+<p><em>(Number as first argument, hash as second argument)</em></p>
+
+<h2>number_to_currency</h2>
+<%= number_to_currency(34.5) %><br><br>
+<em>Can use :precision, :unit, and :format options to change how it displays</em><br><br>
+<%= number_to_currency(34.5, :precision => 0, :unit => "kr", :format => "%n %u") %><br>
+<hr>
+
+<h2>number_to_percentage</h2>
+<em>34.5 becomes 34.5%</em><br><br>
+<%= number_to_percentage(34.5, :precision => 1, :separator => ',') %>
+<hr>
+
+<h2>number_with_precision</h2>
+<em>Specifies how many decimal places should be included with the number</em><br>
+<em>By default, includes 3 decimal places.</em><br><br>
+<%= number_with_precision(34.56789) %><br>
+<%= number_with_precision(34.56789, :precision => 6) %>
+<hr>
+
+<h2>number_with_delimiter</h2>
+<em>Includes a delimiter with a number. By default, includes a comma. Can specify with :delimiter => ' '.</em><br><br>
+<%= number_with_delimiter(3456789) %><br>
+<%= number_with_delimiter(3456789, :delimiter => ' ') %>
+<hr>
+
+<h2>number_to_human</h2>
+<em>Takes a number and outputs it as a simple text string. By default, will include 3 digits.</em><br><br>
+<%= number_to_human(123456789) %><br><br>
+<em>Can use :precision to specify how many digits we want to appear in the number.</em><br><br>
+<%= number_to_human(123456789, :precision => 5) %>
+<hr>
+
+<h2>number_to_human_size(1234567)</h2>
+<em>Useful for working with data, converting file size to something readable.</em><br><br>
+<%= number_to_human_size(1234567) %><br>
+<%= number_to_human_size(1234567, :precision => 2) %>
+<hr>
+
+<h2>number_to_phone</h2>
+<em>Takes a number and formats it like a phone number.</em><br><br>
+<%= number_to_phone(1234567890) %><br><br>
+<em>Can also specify hashes to format the number</em><br>
+<em>:area_code => true,</em><br>
+<em>:delimiter => ' '</em><br>
+<em>:country_code => 1,</em><br>
+<em>:extension => '321'</em><br><br>
+<%= number_to_phone(1234567890, :area_code => true, :delimiter => ' ', :country_code => 1, :extension => '321') %>
+<hr>
+
